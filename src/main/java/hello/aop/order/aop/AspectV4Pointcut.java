@@ -4,27 +4,20 @@ import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
 
-@Aspect
 @Slf4j
-public class AspectV3 {
+@Aspect
+public class AspectV4Pointcut {
 
-
-    @Pointcut("execution(* hello.aop.order..*(..))")
-    public void allOrders(){}
-
-    @Pointcut("execution(* *..*Service.*(..))")
-    private void allService(){}
-
-    @Around("allOrders()")
+    @Around("hello.aop.order.aop.PointCuts.allOrders()")
     public Object doLog(ProceedingJoinPoint joinPoint) throws Throwable {
         log.info("[LOG] {}", joinPoint.getSignature());
 
         return joinPoint.proceed();
     }
 
-    @Around("allOrders() && allService()")
+
+    @Around("hello.aop.order.aop.PointCuts.orderAndService()")
     public Object doTransaction(ProceedingJoinPoint joinPoint) throws Throwable{
         try{
             log.info("[트랜잭션 시작] {}", joinPoint.getSignature());
@@ -38,6 +31,6 @@ public class AspectV3 {
             log.info("[리소스 반환] {}", joinPoint.getSignature());
         }
 
-   }
+    }
 
 }

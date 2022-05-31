@@ -19,4 +19,5 @@ public class MemberServiceImpl implements MemberService{
     public String internal(String param){
         return "ok";
     }
+
 }

@@ -80,9 +80,6 @@ public class ParameterTest {
         public void atAnnotation(JoinPoint joinPoint, MethodAop annotation){
             log.info("[atAnnotation]{}, annotation= {}", joinPoint.getSignature(),annotation.value());
         }
-
-
-
     }
 
 
